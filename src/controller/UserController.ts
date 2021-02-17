@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UserInputDTO } from "../business/entities/User";
+import { LoginInputDTO, UserInputDTO } from "../business/entities/User";
 import { UserBusiness } from "../business/UserBusiness";
 import { UserDataBase } from "../data/UserDataBase";
 import { Authenticator } from "../services/Authenticator";
@@ -30,6 +30,25 @@ export class UserController {
 
         } catch (error) {
             res.status(error.statusCode || 400).send({ error: error.message });
+        }
+    }
+
+    async login(req: Request, res: Response) {
+
+        try {
+
+            const loginData: LoginInputDTO = {
+                email: req.body.email,
+                password: req.body.password
+            }
+
+            const token = await userBusiness.getUserByEmail(loginData);
+
+            res.status(200).send({ token });
+
+        } catch (error) {
+            res.status(error.statusCode | 400)
+            .send({ error: error.message })
         }
     }
 }
