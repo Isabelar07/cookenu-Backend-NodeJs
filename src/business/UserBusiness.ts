@@ -73,13 +73,13 @@ export class UserBusiness {
 
     }
 
-    async getUserProfileByToken(id: string, authorization: string) {
+    async getUserProfileById(id: string, authorization: string) {
 
         if (!authorization) {
             throw new CustomError(406, "Pass an authentication on the headers")
         }
 
-        const verifyToken: AuthenticationData = this.authenticator.getData(authorization)
+        const verifyToken: AuthenticationData = this.authenticator.getData(authorization as string)
 
         if(!verifyToken) {
             throw new CustomError(401, "Invalid credentials")
@@ -94,4 +94,5 @@ export class UserBusiness {
         return user
 
     }
+
 }

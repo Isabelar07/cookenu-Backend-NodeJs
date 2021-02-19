@@ -60,7 +60,7 @@ export class UserController {
 
             const token = userBusiness.authenticator.getData(authorization)
 
-            const user = await userBusiness.getUserProfileByToken(token.id, authorization)
+            const user = await userBusiness.getUserProfileById(token.id, authorization)
 
             const profile = {
                 id: user.id,
@@ -74,7 +74,28 @@ export class UserController {
             res.status(error.statusCode | 400)
             .send({ error: error.message })
         }
-
-    
     }
+
+    async anotherUsersProfile(req: Request, res: Response) {
+        try {
+
+            const { authorization } = req.headers
+            const { id } = req.params
+
+            const user = await userBusiness.getUserProfileById(id, authorization as string)
+
+            const profile = {
+                id: user.id,
+                name: user.name,
+                email: user.email
+            }
+
+            res.status(200).send({profile: profile})
+
+    } catch (error) {
+        res.status(error.statusCode | 400)
+        .send({ error: error.message })
+        }
+    }
+
 }
