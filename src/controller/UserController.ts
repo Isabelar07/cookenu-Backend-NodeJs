@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { LoginInputDTO, UserInputDTO } from "../business/entities/User";
 import { UserBusiness } from "../business/UserBusiness";
 import { UserDataBase } from "../data/UserDataBase";
-import { Authenticator } from "../services/Authenticator";
+import { AuthenticationData, Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 
@@ -50,5 +50,31 @@ export class UserController {
             res.status(error.statusCode | 400)
             .send({ error: error.message })
         }
+    }
+
+    async profile(req: Request, res: Response) {
+        try {
+
+            const { authorization } = req.headers
+
+
+            const token = userBusiness.authenticator.getData(authorization)
+
+            const user = await userBusiness.getUserProfileByToken(token.id, authorization)
+
+            const profile = {
+                id: user.id,
+                name: user.name,
+                email: user.email
+            }
+
+            res.status(200).send({user: profile})
+            
+        } catch (error) {
+            res.status(error.statusCode | 400)
+            .send({ error: error.message })
+        }
+
+    
     }
 }

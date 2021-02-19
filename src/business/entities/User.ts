@@ -17,3 +17,9 @@ export interface LoginInputDTO {
     email: string,
     password: string
 }
+
+export interface GetUserInfoDTO {
+    id: string,
+    name: string,
+    email: string
+}

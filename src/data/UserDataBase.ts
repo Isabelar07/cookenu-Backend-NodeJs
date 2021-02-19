@@ -49,4 +49,19 @@ export class UserDataBase extends BaseDataBase {
         }
     } 
 
+    public async selectUserInfo(id: string): Promise<User> {
+        try {
+
+            const result = await BaseDataBase.connection
+            .select("*")
+            .from(UserDataBase.TABLE_NAME)
+            .where({ id })
+
+            return result[0]
+
+        } catch (error) {
+            throw new CustomError(500, "An unexpected error ocurred")
+        }
+    }
+
 }

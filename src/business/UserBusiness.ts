@@ -1,8 +1,8 @@
 import { UserDataBase } from "../data/UserDataBase";
-import { Authenticator } from "../services/Authenticator";
+import { AuthenticationData, Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
-import { LoginInputDTO, UserInputDTO } from "./entities/User";
+import { LoginInputDTO, User, UserInputDTO } from "./entities/User";
 import { CustomError } from "./error/CustomError";
 
 export class UserBusiness {
@@ -10,7 +10,7 @@ export class UserBusiness {
     constructor(
         private idGenerator: IdGenerator,
         private hashManager: HashManager,
-        private authenticator: Authenticator,
+        public authenticator: Authenticator,
         private userDataBase: UserDataBase
     ) {}
 
@@ -70,6 +70,28 @@ export class UserBusiness {
         })
 
         return acessToken
+
+    }
+
+    async getUserProfileByToken(id: string, authorization: string) {
+
+        if (!authorization) {
+            throw new CustomError(406, "Pass an authentication on the headers")
+        }
+
+        const verifyToken: AuthenticationData = this.authenticator.getData(authorization)
+
+        if(!verifyToken) {
+            throw new CustomError(401, "Invalid credentials")
+        }
+
+        const user  = await this.userDataBase.selectUserInfo(id)
+
+        if(!user) {
+            throw new CustomError(404, "User not found")
+        }
+
+        return user
 
     }
 }
