@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { LoginInputDTO, UserInputDTO } from "../business/entities/User";
+import { LoginInputDTO, UserInputDTO } from "../entities/User";
 import { UserBusiness } from "../business/UserBusiness";
 import { UserDataBase } from "../data/UserDataBase";
 import { AuthenticationData, Authenticator } from "../services/Authenticator";

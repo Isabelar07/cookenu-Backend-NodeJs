@@ -1,6 +1,6 @@
-import { User } from "../business/entities/User";
+import { User } from "../entities/User";
 import { BaseDataBase } from "./BaseDataBase";
-import { CustomError } from "../business/error/CustomError";
+import { CustomError } from "../error/CustomError";
 
 export class UserDataBase extends BaseDataBase {
 
