@@ -31,7 +31,6 @@ export class UserDataBase extends BaseDataBase {
             }).into(UserDataBase.TABLE_NAME)
 
         } catch (error) {
-            console.log(error)
             throw new CustomError(500, "An unexpected error ocurred")
         }
     }
