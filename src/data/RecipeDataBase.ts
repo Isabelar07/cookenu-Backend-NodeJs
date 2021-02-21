@@ -23,7 +23,22 @@ export class RecipeDataBase extends BaseDataBase {
             console.log(error)
             throw new CustomError(500, "An unexpected error ocurred")
         }
-    }
 
+        
+    }
     
+    public async selectRecipeById(recipe_id: string): Promise<Recipe> {
+        try {
+
+            const result = await BaseDataBase.connection
+            .select("*")
+            .from(RecipeDataBase.TABLE_NAME)
+            .where({ recipe_id })
+
+            return result[0]
+
+        } catch (error) {
+            throw new CustomError(500, "An unexpected error ocurred")
+        }
+    }
 }

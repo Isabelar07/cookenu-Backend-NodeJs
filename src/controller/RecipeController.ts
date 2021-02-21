@@ -38,4 +38,27 @@ export class RecipeController {
             })
         }   
     }
+
+    async getRecipe(req: Request, res: Response) {
+        try {
+
+            const { authorization } = req.headers
+            const { id } = req.params
+
+            const recipe = await recipeBusiness.getRecipeById(id, authorization as string)
+
+            const recipeData = {
+                id: recipe.recipe_id,
+                title: recipe.title,
+                description: recipe.description,
+                createAt: recipe.createAt
+            }
+
+            res.status(200).send({recipe: recipeData})
+
+    } catch (error) {
+        res.status(error.statusCode | 400)
+        .send({ error: error.message })
+        }
+    }
 }

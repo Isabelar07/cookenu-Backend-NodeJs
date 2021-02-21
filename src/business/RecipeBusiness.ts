@@ -3,7 +3,7 @@ import { UserDataBase } from "../data/UserDataBase";
 import { Recipe, RecipeInputDTO } from "../entities/Recipe";
 import { CustomError } from "../error/CustomError";
 import { GenerateDate } from "../model/RecipeModel";
-import { Authenticator } from "../services/Authenticator";
+import { AuthenticationData, Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
 
 export class RecipeBusiness {
@@ -45,5 +45,27 @@ export class RecipeBusiness {
         }
 
         await this.recipeDataBase.insertRecipe(recipeData)
+    }
+
+    async getRecipeById(id: string, authorization: string) {
+
+        if (!authorization) {
+            throw new CustomError(406, "Pass an authentication on the headers")
+        }
+
+        const verifyToken: AuthenticationData = this.authenticator.getData(authorization as string)
+
+        if(!verifyToken) {
+            throw new CustomError(401, "Invalid token")
+        }
+
+        const recipe  = await this.recipeDataBase.selectRecipeById(id)
+
+        if(!recipe) {
+            throw new CustomError(404, "User not found")
+        }
+
+        return recipe
+
     }
 }
