@@ -82,7 +82,7 @@ export class UserBusiness {
         const verifyToken: AuthenticationData = this.authenticator.getData(authorization as string)
 
         if(!verifyToken) {
-            throw new CustomError(401, "Invalid credentials")
+            throw new CustomError(401, "Invalid token")
         }
 
         const user  = await this.userDataBase.selectUserInfo(id)
