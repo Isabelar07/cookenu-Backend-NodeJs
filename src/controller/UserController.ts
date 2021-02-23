@@ -2,15 +2,18 @@ import { Request, Response } from "express";
 import { LoginInputDTO, UserInputDTO } from "../entities/User";
 import { UserBusiness } from "../business/UserBusiness";
 import { UserDataBase } from "../data/UserDataBase";
-import { AuthenticationData, Authenticator } from "../services/Authenticator";
+import { Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
+import { UserRelationDataBase } from "../data/UserRelationDataBase";
+import { Follow } from "../entities/Follow";
 
 const userBusiness = new UserBusiness(
     new IdGenerator(),
     new HashManager(),
     new Authenticator(),
-    new UserDataBase()   
+    new UserDataBase(),
+    new UserRelationDataBase()   
 );
 
 export class UserController {
@@ -68,6 +71,7 @@ export class UserController {
                 email: user.email
             }
 
+
             res.status(200).send({user: profile})
             
         } catch (error) {
@@ -97,5 +101,21 @@ export class UserController {
         .send({ error: error.message })
         }
     }
+
+    async followUser(req: Request, res: Response) {
+        try {
+
+            const authorization = req.headers.authorization as string
+            const userToFollowId = req.body.userToFollowId
+
+            const user = await userBusiness.followUser(userToFollowId, authorization)
+
+            res.status(200).send({message: "user followed successfully", user})
+
+    } catch (error) {
+        res.status(error.statusCode | 400)
+        .send({ error: error.message })
+        }
+    }    
 
 }

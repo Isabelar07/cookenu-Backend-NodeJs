@@ -4,6 +4,7 @@ import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import { LoginInputDTO, User, UserInputDTO } from "../entities/User";
 import { CustomError } from "../error/CustomError";
+import { UserRelationDataBase } from "../data/UserRelationDataBase";
 
 export class UserBusiness {
 
@@ -11,7 +12,8 @@ export class UserBusiness {
         private idGenerator: IdGenerator,
         private hashManager: HashManager,
         public authenticator: Authenticator,
-        private userDataBase: UserDataBase
+        private userDataBase: UserDataBase,
+        private userRelationDataBase: UserRelationDataBase
     ) {}
 
     async createUser(user: UserInputDTO) {
@@ -92,6 +94,39 @@ export class UserBusiness {
         }
 
         return user
+
+    }
+
+    async followUser(userToFollowId: string, authorization: string) {
+
+        if (!userToFollowId) {
+            throw new CustomError(204, 'please, put the user id you want to follow in the "userToFllowId"')
+        }
+
+        if (!authorization) {
+            throw new CustomError(406, "Pass an authentication on the headers")
+        }
+
+        const authenticationData = this.authenticator.getData(authorization as string)
+        const userId = authenticationData.id
+        console.log(userId)
+
+        if(!authenticationData) {
+            throw new CustomError(401, "Invalid token")
+        }
+
+        const user = await this.userDataBase.selectUserInfo(userToFollowId)
+
+        if(!user) {
+            throw new CustomError(404, "User not found")
+        }
+
+        const userRelationDataBase  = await this.userRelationDataBase.insertFollowUser(
+            userId,
+            userToFollowId
+        )
+
+        return userRelationDataBase
 
     }
 

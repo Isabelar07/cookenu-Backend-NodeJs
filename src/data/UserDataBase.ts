@@ -55,10 +55,11 @@ export class UserDataBase extends BaseDataBase {
             .select("*")
             .from(UserDataBase.TABLE_NAME)
             .where({ id })
-
+            
             return result[0]
 
         } catch (error) {
+            console.log(error)
             throw new CustomError(500, "An unexpected error ocurred")
         }
     }

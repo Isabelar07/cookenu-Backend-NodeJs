@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/user", userRouter);
-app.use("/recipe", recipeRouter)
+app.use("/recipe", recipeRouter);
 
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
