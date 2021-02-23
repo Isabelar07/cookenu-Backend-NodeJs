@@ -4,11 +4,11 @@
 
 # Índice
 
-- [Descrição](#-descrição-do-projeto)
+- [Descrição](#-Descrição-do-projeto)
 
-- [Tecnologias utilizadas](#-tecnologias-utilizadas)
+- [Tecnologias utilizadas](#-Tecnologias-utilizadas)
 
-- [Instalação](#-como-baixar-o-projeto)
+- [Instalação](#-Como-baixar-o-projeto)
 
 ---
 
@@ -38,18 +38,15 @@ o projeto foi desenvolvido usando as seguintes tecnologias:
 - Primeiro instale o [Git](https://git-scm.com/), [Node.jS](https://nodejs.org/pt-br/download/) + [npm](https://www.npmjs.com/get-npm)
 ```bash
 # Clonar o repositório
-
 git clone https://github.com/Isabelar07/cookenu-Backend-NodeJs.git
 
 # Entrar no diretório
 cd cookenu-Backend-NodeJs
 
 # Instalar as dependências
-
 npm install
 
 # Rodar o projeto
-
 npm run dev
 ```
 
