@@ -4,9 +4,11 @@
 
 # Índice
 
--[Descrição](#-descrição-do-projeto)
--[Tecnologias utilizadas](#-tecnologias-utilizadas)
--[Instalação](#-como-baixar-o-projeto)
+- [Descrição](#-descrição-do-projeto)
+
+- [Tecnologias utilizadas](#-tecnologias-utilizadas)
+
+- [Instalação](#-como-baixar-o-projeto)
 
 ---
 
