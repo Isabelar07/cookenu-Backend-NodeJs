@@ -130,4 +130,37 @@ export class UserBusiness {
 
     }
 
+    async unFollowUser(userToUnFollowId: string, authorization: string) {
+
+        if (!userToUnFollowId) {
+            throw new CustomError(204, 'Please, put in the "userToUnFllowId" the ID of the user you want to stop following ')
+        }
+
+        if (!authorization) {
+            throw new CustomError(406, "Pass an authentication on the headers")
+        }
+
+        const authenticationData = this.authenticator.getData(authorization as string)
+        const userId = authenticationData.id
+        console.log(userId)
+
+        if(!authenticationData) {
+            throw new CustomError(401, "Invalid token")
+        }
+
+        const user = await this.userDataBase.selectUserInfo(userToUnFollowId)
+
+        if(!user) {
+            throw new CustomError(404, "User not found")
+        }
+
+        const userRelationDataBase  = await this.userRelationDataBase.deleteFollowUser(
+            userId,
+            userToUnFollowId
+        )
+
+        return userRelationDataBase
+
+    }
+
 }

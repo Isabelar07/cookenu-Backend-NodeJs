@@ -116,6 +116,21 @@ export class UserController {
         res.status(error.statusCode | 400)
         .send({ error: error.message })
         }
-    }    
+    }   
+    
+    async unFollowUser(req: Request, res: Response) {
+        try {
 
+            const authorization = req.headers.authorization as string
+            const userToUnFollowId = req.body.userToUnFollowId
+
+            const user = await userBusiness.followUser(userToUnFollowId, authorization)
+
+            res.status(200).send({message: "you have successfully failed to follow", user})
+
+    } catch (error) {
+        res.status(error.statusCode | 400)
+        .send({ error: error.message })
+        }
+    }   
 }

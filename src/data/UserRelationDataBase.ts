@@ -24,4 +24,23 @@ export class UserRelationDataBase extends BaseDataBase {
         }
     }
 
+    public async deleteFollowUser(
+        userId: string,
+        userToUnFollowId: string
+    ): Promise<void> {
+        try {
+
+            await BaseDataBase.connection
+            .del()
+            .from(UserRelationDataBase.TABLE_NAME)
+            .where({
+                user_id: userId,
+                user_to_follow_id: userToUnFollowId
+            })
+
+        } catch (error) {
+            throw new CustomError(500, "An unexpected error ocurred")
+        }
+    }
+
 }
