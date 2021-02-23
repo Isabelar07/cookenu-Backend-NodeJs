@@ -109,7 +109,6 @@ export class UserBusiness {
 
         const authenticationData = this.authenticator.getData(authorization as string)
         const userId = authenticationData.id
-        console.log(userId)
 
         if(!authenticationData) {
             throw new CustomError(401, "Invalid token")
@@ -142,7 +141,6 @@ export class UserBusiness {
 
         const authenticationData = this.authenticator.getData(authorization as string)
         const userId = authenticationData.id
-        console.log(userId)
 
         if(!authenticationData) {
             throw new CustomError(401, "Invalid token")
