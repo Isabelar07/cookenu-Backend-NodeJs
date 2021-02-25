@@ -12,13 +12,13 @@
 
 ---
 
-##🖋 Descrição do projeto
+## 🖋 Descrição do projeto
 
 O projeto **Cookenu** foi desenvolvido durante o **Bootcamp da Labenu**, com o intuito de colocarmos em prática o conteúdo estudado durante o curso. Trata-se de uma rede social, na qual os usuários podem dividir informações relevantes sobre comidas e receitas que tenham experimentado. 
 
 ---
 
-##🚀 Tecnologias utilizadas
+## 🚀 Tecnologias utilizadas
 
 o projeto foi desenvolvido usando as seguintes tecnologias:
 
@@ -33,7 +33,7 @@ o projeto foi desenvolvido usando as seguintes tecnologias:
 
 ---
 
-##💾 Como baixar o projeto
+## 💾 Como baixar o projeto
 
 - Primeiro instale o [Git](https://git-scm.com/), [Node.jS](https://nodejs.org/pt-br/download/) + [npm](https://www.npmjs.com/get-npm)
 ```bash
@@ -57,7 +57,7 @@ npm run dev
 ### Usuários
 ```sql
 CREATE TABLE cookenu_Users (
-	id VARCHAR(255) PRIMARY KEY,
+    id VARCHAR(255) PRIMARY KEY,
     name VARCHAR (255) NOT NULL,
     email VARCHAR (100) UNIQUE NOT NULL,
     password VARCHAR (255) NOT NULL
@@ -67,7 +67,7 @@ CREATE TABLE cookenu_Users (
 ### Receitas
 ```sql
 CREATE TABLE Recipe_cookenu (
-	recipe_id VARCHAR(255) PRIMARY KEY,
+    recipe_id VARCHAR(255) PRIMARY KEY,
     user_id VARCHAR(255) NOT NULL,
     title VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE Recipe_cookenu (
 ### Seguir outros usuários
 ```sql
 CREATE TABLE Users_relation (
-	user_id VARCHAR(255),
+    user_id VARCHAR(255),
     user_to_follow_id VARCHAR(255) NOT NULL,
     FOREIGN KEY(user_id) REFERENCES User_profile_cookenu(id),
     FOREIGN KEY(user_to_follow_id) REFERENCES User_profile_cookenu(id)
