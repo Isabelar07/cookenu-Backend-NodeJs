@@ -3,7 +3,7 @@ import Knex from "knex";
 import dotenv, { config } from "dotenv";
 
 dotenv.config();
-
+ 
 
 export abstract class BaseDataBase {
 
