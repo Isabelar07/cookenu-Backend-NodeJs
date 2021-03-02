@@ -1,6 +1,4 @@
 import { FeedDataBase } from "../data/FeedDataBase"
-import { UserDataBase } from "../data/UserDataBase"
-import { UserRelationDataBase } from "../data/UserRelationDataBase"
 import { CustomError } from "../error/CustomError"
 import { Authenticator } from "../services/Authenticator"
 
