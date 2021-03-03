@@ -1,7 +1,5 @@
-import { User } from "../entities/User";
 import { BaseDataBase } from "./BaseDataBase";
 import { CustomError } from "../error/CustomError";
-import { Follow } from "../entities/Follow";
 
 export class UserRelationDataBase extends BaseDataBase {
 
