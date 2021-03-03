@@ -55,7 +55,7 @@ export class UserBusiness {
         const userFromDB = await this.userDataBase.selectEmail(user.email);
 
         if(!userFromDB) {
-            throw new CustomError(406, "Invalid credentials!");
+            throw new CustomError(406, "user does not exist");
         }
 
         const passwordIsCorrect = await this.hashManager.compare(
