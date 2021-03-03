@@ -2,7 +2,7 @@ import { RecipeDataBase } from "../data/RecipeDataBase";
 import { UserDataBase } from "../data/UserDataBase";
 import { Recipe, RecipeInputDTO } from "../entities/Recipe";
 import { CustomError } from "../error/CustomError";
-import { GenerateDate } from "../model/RecipeModel";
+import { GenerateDate } from "../services/DateGenerate";
 import { AuthenticationData, Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
 

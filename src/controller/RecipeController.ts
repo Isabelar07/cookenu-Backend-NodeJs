@@ -3,7 +3,7 @@ import { RecipeBusiness } from "../business/RecipeBusiness";
 import { RecipeDataBase } from "../data/RecipeDataBase";
 import { UserDataBase } from "../data/UserDataBase";
 import { RecipeInputDTO } from "../entities/Recipe";
-import { GenerateDate } from "../model/RecipeModel";
+import { GenerateDate } from "../services/DateGenerate";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
 
