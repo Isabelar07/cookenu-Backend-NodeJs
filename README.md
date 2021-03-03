@@ -10,6 +10,8 @@
 
 - [Instalação](#-Como-baixar-o-projeto)
 
+- [Tabelas](#-Tabelas-criadas-no-Workbench)
+
 ---
 
 ## 🖋 Descrição do projeto
