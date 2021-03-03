@@ -6,7 +6,6 @@ import { Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import { UserRelationDataBase } from "../data/UserRelationDataBase";
-import { Follow } from "../entities/Follow";
 
 const userBusiness = new UserBusiness(
     new IdGenerator(),
