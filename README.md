@@ -30,7 +30,6 @@ o projeto foi desenvolvido usando as seguintes tecnologias:
 - Cors
 - mySQL
 - UUID
-- JWT
 - Bcryptjs
 
 ---
