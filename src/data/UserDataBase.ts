@@ -59,7 +59,6 @@ export class UserDataBase extends BaseDataBase {
             return result[0]
 
         } catch (error) {
-            console.log(error)
             throw new CustomError(500, error.message)
         }
     }
