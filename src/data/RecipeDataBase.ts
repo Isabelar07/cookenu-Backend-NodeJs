@@ -20,7 +20,7 @@ export class RecipeDataBase extends BaseDataBase {
             }).into(RecipeDataBase.TABLE_NAME)
 
         } catch (error) {
-            throw new CustomError(500, "An unexpected error ocurred")
+            throw new CustomError(500, error.message)
         }
 
         

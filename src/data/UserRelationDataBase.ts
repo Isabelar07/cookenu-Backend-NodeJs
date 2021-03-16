@@ -18,7 +18,7 @@ export class UserRelationDataBase extends BaseDataBase {
             }).into(UserRelationDataBase.TABLE_NAME)
             
         } catch (error) {
-            throw new CustomError(500, "An unexpected error ocurred")
+            throw new CustomError(500, error.message)
         }
     }
 
@@ -37,7 +37,7 @@ export class UserRelationDataBase extends BaseDataBase {
             })
 
         } catch (error) {
-            throw new CustomError(500, "An unexpected error ocurred")
+            throw new CustomError(500, error.message)
         }
     }
 

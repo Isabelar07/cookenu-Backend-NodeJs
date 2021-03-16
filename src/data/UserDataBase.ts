@@ -44,7 +44,7 @@ export class UserDataBase extends BaseDataBase {
 
             return UserDataBase.toUserModel(result[0]);
         } catch (error) {
-            throw new CustomError(500, "An unexpected error ocurred")
+            throw new CustomError(500, error.message)
         }
     } 
 
@@ -60,7 +60,7 @@ export class UserDataBase extends BaseDataBase {
 
         } catch (error) {
             console.log(error)
-            throw new CustomError(500, "An unexpected error ocurred")
+            throw new CustomError(500, error.message)
         }
     }
 

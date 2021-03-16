@@ -19,7 +19,7 @@ export class FeedDataBase extends BaseDataBase {
         return result[0]
 
     } catch (error) {
-        throw new CustomError(500, "An unexpected error ocurred")
+        throw new CustomError(500, error.message)
     }
  }
 }
